@@ -3,7 +3,7 @@ import apiKeys from "../utilities/api-keys";
 import { useState } from "react";
 import axios, { CanceledError } from "axios";
 
-const Searchbar = ({onLocation}) => {
+const Searchbar = ({onSetData, onHistory, onSetHistory}) => {
     const [location, setLocation] = useState("");
 
     const url =
@@ -18,7 +18,8 @@ const Searchbar = ({onLocation}) => {
             .get(url)
             .then((response) => {
                 console.log(response.data);
-                onLocation(response.data);
+                onSetData(response.data);
+                onSetHistory([...onHistory, response.data])
             })
             .catch((error) => {
                 if (error instanceof CanceledError) return;
