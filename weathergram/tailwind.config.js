@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {},
     fontFamily: {
-      cursive: ['Great Vibes', 'cursive']
+      cursive: ['Whisper', 'cursive']
     }
   },
   plugins: [],

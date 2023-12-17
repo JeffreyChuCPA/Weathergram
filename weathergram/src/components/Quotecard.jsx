@@ -3,13 +3,8 @@ import urls from "../utilities/urls";
 import { useState, useEffect } from "react";
 
 const Quotecard = ({onData}) => {
-  
-  if (onData?.name) {
-    return <div></div>
-  }
-  
   const [quote, setQuote] = useState({})
-  
+
   useEffect(() => {
     axios.get(urls.quoteURL)
     .then(response => {
@@ -21,11 +16,15 @@ const Quotecard = ({onData}) => {
     })
   }, [] )
 
+  if (onData?.name) {
+    return null;
+  }
+
     return (
-        <div className="bg-[#000000d0] text-white p-8 rounded-[24px] w-full max-w-md mx-4">
+        <div className="bg-[#000000d0] text-white p-8 rounded-[24px] w-full max-w-sm mx-4">
             { quote && <p className="font-cursive text-3xl" >{quote.content}</p>}
             {/*//*Fix below code for the -undefined  */}
-            { quote && <p className="font-cursive text-2xl text-right mt-4" >{"-"+quote.author}</p>}
+            { quote && <p className="font-cursive text-2xl text-right mt-4" >{`- ${quote.author}`}</p>}
         </div>
     );
 };
