@@ -1,5 +1,5 @@
 const urls = {
-  weatherURL: 'https://api.openweathermap.org/data/2.5/weather?q=',
+  weatherURL: 'https://api.openweathermap.org/data/2.5',
   quoteURL: 'https://api.quotable.io/random'
 }
 

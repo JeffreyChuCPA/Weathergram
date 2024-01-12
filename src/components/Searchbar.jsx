@@ -3,28 +3,54 @@ import apiKeys from "../utilities/api-keys";
 import { useState } from "react";
 import axios, { CanceledError } from "axios";
 
-const Searchbar = ({onSetData, onHistory, onSetHistory}) => {
+const Searchbar = ({ onSetData, onHistory, onSetHistory, onSetForecast }) => {
     const [location, setLocation] = useState("");
 
-    const url =
+    const currentWeatherURL =
         urls.weatherURL +
+        "/weather?q=" +
         location +
         "&units=metric&appid=" +
         apiKeys.weatherAPIKey;
 
-    //*function to retrieve API data from user input
+
+    //*function to retrieve current weather API data from user input
     const searchLocation = () => {
         axios
-            .get(url)
+            .get(currentWeatherURL)
             .then((response) => {
-                console.log(response.data);
                 onSetData(response.data);
-                onSetHistory([...onHistory, response.data])
+                onSetHistory([...onHistory, response.data]);
+                let currlatitude = response.data.coord.lat;
+                let currlongitude = response.data.coord.lon;
+                const forecastURL =
+                    urls.weatherURL +
+                    "/forecast?lat=" +
+                    currlatitude +
+                    "&lon=" +
+                    currlongitude +
+                    "&units=metric&appid=" +
+                    apiKeys.weatherAPIKey;
+                console.log(forecastURL)
+                searchForecast(forecastURL)
             })
             .catch((error) => {
                 if (error instanceof CanceledError) return;
             });
         setLocation("");
+    };
+
+    //*function to retrieve forecast weather API data from response in searchLocation()
+    const searchForecast = (forecastURL) => {
+        axios
+            .get(forecastURL)
+            .then((response) => {
+                console.log(response.data);
+                onSetForecast(response.data);
+            })
+            .catch((error) => {
+                if (error instanceof CanceledError) return;
+            });
     };
 
     //*function to handle "Enter" press from user for searching
@@ -45,7 +71,8 @@ const Searchbar = ({onSetData, onHistory, onSetHistory}) => {
                 className="border-none outline-none px-[0.4em] py-[1em] rounded-[24px] bg-[#7c7c7c2b] text-white font-[inherit] text-[17px] w-[calc(100%-70px)]"
             />
             <button
-                onClick={searchLocation}
+                onClick={
+                    searchLocation}
                 className=" mx-[0.5rem] rounded-[50%] border-none w-[60px] h-[60px] outline-none bg-[#7c7c7c2b] text-white ease-in-out duration-300 hover:bg-[#7c7c7c6b]"
             >
                 <svg
