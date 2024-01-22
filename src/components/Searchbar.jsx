@@ -21,6 +21,7 @@ const Searchbar = ({ onSetData, onHistory, onSetHistory, onSetForecast }) => {
             .then((response) => {
                 onSetData(response.data);
                 onSetHistory([...onHistory, response.data]);
+                //*TODO To see if possible to use async for the 2 API fetch functions. Forecast API Function relies on data pulled from searchLocation API function first
                 let currlatitude = response.data.coord.lat;
                 let currlongitude = response.data.coord.lon;
                 const forecastURL =
