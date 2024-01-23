@@ -20,7 +20,7 @@ const Weathercard = ({ onData }) => {
                     <img
                         src={`https://openweathermap.org/img/wn/${icon}.png`}
                         alt="Weather Icon"
-                        className=""
+                        className="relative -left-2"
                     />
                     <div>{description}</div>
                 </div>

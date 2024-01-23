@@ -90,6 +90,7 @@ const Forecastcard = ({ onForecast }) => {
 
     return (
         <div className="bg-[#000000d0] text-white p-8 rounded-[24px] w-full max-w-sm mx-4 ">
+            <h2 className="mb-2">5 Day Forecast</h2>
             <ul className="max-h-80 overflow-y-auto mb-9">
                 {ForecastTemp(list).map((item, index) => (
                     <div key={index} className="m-0 mb-[0.4em]">
@@ -99,7 +100,7 @@ const Forecastcard = ({ onForecast }) => {
                         <img
                         src={`https://openweathermap.org/img/wn/${item.forecastIcon}.png`}
                         alt="Weather Icon"
-                        className=""
+                        className="relative -left-2"
                     />
                     </div>
                 ))}

@@ -23,7 +23,7 @@ const Quotecard = ({onData}) => {
     return (
         <div className="bg-[#000000d0] text-white p-8 rounded-[24px] w-full max-w-sm mx-4">
             { quote && <p className="font-cursive text-3xl" >{quote.content}</p>}
-            {/*//*Fix below code for the -undefined  */}
+            {/*//*TODO Fix below code for the -undefined  */}
             { quote && <p className="font-cursive text-2xl text-right mt-4" >{`- ${quote.author}`}</p>}
         </div>
     );
