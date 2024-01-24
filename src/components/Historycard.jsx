@@ -1,16 +1,25 @@
-const Historycard = ({ onHistory, onSetHistory, onData }) => {
+import locationCalc from "../utilities/locationCalc";
+
+const Historycard = ({ onHistory, onSetHistory, onData, onClientCoord }) => {
     //*To hide component on initial render as onData is {} with no data yet to display
     if (!onData?.name) {
         return <div></div>;
     }
 
+    const { clientLat, clientLong } = onClientCoord;
+
     const onClear = () => {
         onSetHistory([]);
     };
 
+    const numberFormatter = new Intl.NumberFormat("en-US", {
+        style: "decimal",
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+    });
+
     const onTempFilter = () => {
         const tempData = [...onHistory];
-        console.log(tempData);
         tempData.sort((temp1, temp2) =>
             temp1.main.temp < temp2.main.temp
                 ? 1
@@ -21,6 +30,40 @@ const Historycard = ({ onHistory, onSetHistory, onData }) => {
         onSetHistory(tempData);
     };
 
+    const onDistFilter = () => {
+        const distData = [...onHistory];
+        distData.sort((dist1, dist2) =>
+            locationCalc(
+                clientLat,
+                clientLong,
+                dist1.coord.lat,
+                dist1.coord.lon
+            ) <
+            locationCalc(
+                clientLat,
+                clientLong,
+                dist2.coord.lat,
+                dist2.coord.lon
+            )
+                ? 1
+                : locationCalc(
+                      clientLat,
+                      clientLong,
+                      dist1.coord.lat,
+                      dist1.coord.lon
+                  ) >
+                  locationCalc(
+                      clientLat,
+                      clientLong,
+                      dist2.coord.lat,
+                      dist2.coord.lon
+                  )
+                ? -1
+                : 0
+        );
+        onSetHistory(distData);
+    };
+
     return (
         <>
             <div className=" bg-[#000000d0] text-white p-8 rounded-[24px] w-full max-w-sm mx-4 flex flex-col relative">
@@ -28,12 +71,23 @@ const Historycard = ({ onHistory, onSetHistory, onData }) => {
                 <div>
                     <ul className="max-h-80 overflow-y-auto mb-9">
                         {onHistory.map((item) => (
-                            <div className="" key={item.id}>
+                            <div className="flex justify-between" key={item.id}>
                                 {" "}
                                 <li>
                                     {" "}
                                     {item.name} {Math.round(item.main.temp)}°C{" "}
                                 </li>{" "}
+                                <div>
+                                    {numberFormatter.format(
+                                        locationCalc(
+                                            clientLat,
+                                            clientLong,
+                                            item.coord.lat,
+                                            item.coord.lon
+                                        )
+                                    )}{" "}
+                                    km
+                                </div>
                             </div>
                         ))}
                     </ul>
@@ -51,7 +105,10 @@ const Historycard = ({ onHistory, onSetHistory, onData }) => {
                     >
                         Temp
                     </button>
-                    <button className=" mt-1 bg-blue-500 text-white px-4 py-2 rounded-lg w-[68px]">
+                    <button
+                        className=" mt-1 bg-blue-500 text-white px-4 py-2 rounded-lg w-[68px]"
+                        onClick={onDistFilter}
+                    >
                         Dist
                     </button>
                 </div>

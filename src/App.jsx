@@ -31,7 +31,7 @@ function App() {
                         <div className="flex flex-row " >
                             <Forecastcard onForecast={forecast} className="" />
                             <Weathercard onClientCoord={clientCoord} onData={data} className=""/>
-                            <Historycard onHistory={history} onSetHistory={setHistory} onData={data} className="" />
+                            <Historycard onClientCoord={clientCoord} onHistory={history} onSetHistory={setHistory} onData={data} className="" />
                         </div>
                     </div>
                 </div>

@@ -25,6 +25,12 @@ const Weathercard = ({ onData, onClientCoord }) => {
         clientLong
     );
 
+    const numberFormatter = new Intl.NumberFormat("en-US", {
+        style: "decimal",
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+    });
+
     return (
         <div className="bg-[#000000d0] text-white p-8 rounded-[24px] w-full max-w-sm mx-4 ">
             <div className="">
@@ -40,7 +46,7 @@ const Weathercard = ({ onData, onClientCoord }) => {
                 </div>
                 <div>{`Humidity: ${humidity}%`}</div>
                 <div>{`Wind speed: ${speed} km/h`}</div>
-                <div>{`Distance: ${Math.round(
+                <div>{`Distance: ${numberFormatter.format(
                     locationCalc(clientLat, clientLong, lat, lon)
                 )} km`}</div>
             </div>
