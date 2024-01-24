@@ -10,16 +10,15 @@ const Historycard = ({ onHistory, onSetHistory, onData }) => {
 
     const onTempFilter = () => {
         const tempData = [...onHistory];
-        console.log(tempData)
-        tempData
-            .sort((temp1, temp2) =>
-                temp1.main.temp < temp2.main.temp
-                    ? 1
-                    : temp1.main.temp > temp2.main.temp
-                    ? -1
-                    : 0
-            );
-        onSetHistory(tempData)
+        console.log(tempData);
+        tempData.sort((temp1, temp2) =>
+            temp1.main.temp < temp2.main.temp
+                ? 1
+                : temp1.main.temp > temp2.main.temp
+                ? -1
+                : 0
+        );
+        onSetHistory(tempData);
     };
 
     return (
@@ -53,7 +52,7 @@ const Historycard = ({ onHistory, onSetHistory, onData }) => {
                         Temp
                     </button>
                     <button className=" mt-1 bg-blue-500 text-white px-4 py-2 rounded-lg w-[68px]">
-                        Etc
+                        Dist
                     </button>
                 </div>
             </div>

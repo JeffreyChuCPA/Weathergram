@@ -93,14 +93,16 @@ const Forecastcard = ({ onForecast }) => {
             <h2 className="mb-2">5 Day Forecast</h2>
             <ul className="max-h-80 overflow-y-auto mb-9">
                 {ForecastTemp(list).map((item, index) => (
-                    <div key={index} className="m-0 mb-[0.4em]">
+                    <div key={index} className="m-0 mb-[0.4em] flex justify-between">
                         {" "}
-                        <li>{item.forecastDay}</li>
-                        <li>{`${Math.round(item.forecastTemp)}°C`}</li>
+                        <div>
+                            <li>{item.forecastDay}</li>
+                            <li>{`${Math.round(item.forecastTemp)}°C`}</li>
+                        </div>
                         <img
                         src={`https://openweathermap.org/img/wn/${item.forecastIcon}.png`}
                         alt="Weather Icon"
-                        className="relative -left-2"
+                        className="relative bottom-2"
                     />
                     </div>
                 ))}
