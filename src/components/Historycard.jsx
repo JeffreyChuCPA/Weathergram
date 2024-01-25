@@ -70,8 +70,8 @@ const Historycard = ({ onHistory, onSetHistory, onData, onClientCoord }) => {
                 <h2 className="mb-2">Weather Log</h2>
                 <div>
                     <ul className="max-h-80 overflow-y-auto mb-9">
-                        {onHistory.map((item) => (
-                            <div className="flex justify-between" key={item.id}>
+                        {onHistory.map((item, index) => (
+                            <div className="flex justify-between" key={index}>
                                 {" "}
                                 <li>
                                     {" "}
