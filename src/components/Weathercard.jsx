@@ -12,19 +12,6 @@ const Weathercard = ({ onData, onClientCoord }) => {
     const { speed } = onData.wind;
     const { lat, lon } = onData.coord;
     const { clientLat, clientLong } = onClientCoord;
-    console.log(
-        name,
-        icon,
-        description,
-        temp,
-        humidity,
-        speed,
-        lat,
-        lon,
-        clientLat,
-        clientLong
-    );
-
     const numberFormatter = new Intl.NumberFormat("en-US", {
         style: "decimal",
         minimumFractionDigits: 0,

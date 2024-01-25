@@ -9,7 +9,7 @@ const Quotecard = ({onData}) => {
     axios.get(urls.quoteURL)
     .then(response => {
       setQuote(response.data);
-      console.log(response.data)
+      
     })
     .catch(error => {
       if (error instanceof CanceledError) return;

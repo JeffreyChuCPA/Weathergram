@@ -37,7 +37,7 @@ const Searchbar = ({ onSetData, onHistory, onSetHistory, onSetForecast, onSetRai
                     currlongitude +
                     "&units=metric&appid=" +
                     apiKeys.weatherAPIKey;
-                console.log(forecastURL)
+                
                 searchForecast(forecastURL)
             })
             .catch((error) => {
@@ -51,7 +51,7 @@ const Searchbar = ({ onSetData, onHistory, onSetHistory, onSetForecast, onSetRai
         axios
             .get(forecastURL)
             .then((response) => {
-                console.log(response.data);
+                
                 onSetForecast(response.data);
             })
             .catch((error) => {
