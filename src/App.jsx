@@ -4,7 +4,8 @@ import Weathercard from "./components/Weathercard";
 import Historycard from "./components/Historycard";
 import Forecastcard from "./components/Forecastcard";
 import { useEffect, useState } from "react";
-import Rainanimation from "./components/Rainanimation";
+import { rainAnimation } from "./utilities/rainAnimation";
+import "./styles/rainStyles.css";
 
 function App() {
     const [data, setData] = useState({});
@@ -13,16 +14,17 @@ function App() {
     const [clientCoord, setClientCoord] = useState({});
     const [isRainy, setIsRainy] = useState(false);
     console.log(data);
-    console.log(isRainy)
+    console.log(history)
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(position => setClientCoord({clientLat: position.coords.latitude, clientLong: position.coords.longitude}));
     }, [setClientCoord])
 
+    rainAnimation(isRainy)
+
     return (
         <>
-            <div className="bg-[url('https://source.unsplash.com/1669x931/?landscape')] bg-cover flex flex-col h-screen justify-center">
-                <div>{isRainy && <Rainanimation showRain={isRainy}/>}</div>
+            <div className="bg-[url('https://source.unsplash.com/1669x931/?landscape')] bg-cover flex flex-col h-screen justify-center w-full">
                     <div className="flex flex-col">
                             <div className="px-5 flex justify-center">
                                 <Searchbar onSetRainy={setIsRainy} onSetForecast={setForecast} onSetData={setData} onSetHistory={setHistory} onHistory={history} />
