@@ -3,7 +3,7 @@ import apiKeys from "../utilities/api-keys";
 import { useState } from "react";
 import axios, { CanceledError } from "axios";
 
-const Searchbar = ({ onSetData, onHistory, onSetHistory, onSetForecast }) => {
+const Searchbar = ({ onSetData, onHistory, onSetHistory, onSetForecast, onSetRainy }) => {
     const [location, setLocation] = useState("");
 
     const currentWeatherURL =
@@ -21,6 +21,11 @@ const Searchbar = ({ onSetData, onHistory, onSetHistory, onSetForecast }) => {
             .then((response) => {
                 onSetData(response.data);
                 onSetHistory([...onHistory, response.data]);
+                if (response.data.weather[0].description.includes('rain' || 'storm')) {
+                    onSetRainy(true)
+                } else {
+                    onSetRainy(false)
+                }
                 //*TODO To see if possible to use async for the 2 API fetch functions. Forecast API Function relies on data pulled from searchLocation API function first
                 let currlatitude = response.data.coord.lat;
                 let currlongitude = response.data.coord.lon;
