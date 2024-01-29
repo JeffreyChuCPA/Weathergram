@@ -5,7 +5,9 @@ import Historycard from "./components/Historycard";
 import Forecastcard from "./components/Forecastcard";
 import { useEffect, useState } from "react";
 import { rainAnimation } from "./utilities/rainAnimation";
+import { snowAnimation } from "./utilities/snowAnimation";
 import "./styles/rainStyles.css";
+import "./styles/snowStyles.css";
 
 function App() {
     const [data, setData] = useState({});
@@ -13,21 +15,26 @@ function App() {
     const [forecast, setForecast] = useState({});
     const [clientCoord, setClientCoord] = useState({});
     const [isRainy, setIsRainy] = useState(false);
-    console.log(data);
-    console.log(history)
+    const [isSnowy, setIsSnowy] = useState(false);
+    console.log(isSnowy)
 
     useEffect(() => {
-        navigator.geolocation.getCurrentPosition(position => setClientCoord({clientLat: position.coords.latitude, clientLong: position.coords.longitude}));
-    }, [setClientCoord])
+        navigator.geolocation.getCurrentPosition(position => setClientCoord({clientLat: position.coords.latitude, clientLong: position.coords.longitude}))
+        console.log('ran')
+        snowAnimation(isSnowy)
+    }, [setClientCoord, isSnowy])
 
     rainAnimation(isRainy)
+    
+    
 
     return (
         <>
+
             <div className="bg-[url('https://source.unsplash.com/1669x931/?landscape')] bg-cover flex flex-col h-screen justify-center w-full">
                     <div className="flex flex-col">
                             <div className="px-5 flex justify-center">
-                                <Searchbar onSetRainy={setIsRainy} onSetForecast={setForecast} onSetData={setData} onSetHistory={setHistory} onHistory={history} />
+                                <Searchbar onSetSnowy={setIsSnowy} onSetRainy={setIsRainy} onSetForecast={setForecast} onSetData={setData} onSetHistory={setHistory} onHistory={history} />
                             </div>
                         <div className=" px-5 flex justify-center items-center">
                             <Quotecard onData={data} />
@@ -40,6 +47,7 @@ function App() {
                     </div>
                 
             </div>
+            <canvas id="snow"></canvas>
         </>
     );
 }
