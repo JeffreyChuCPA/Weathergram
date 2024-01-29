@@ -5,7 +5,6 @@ import Historycard from "./components/Historycard";
 import Forecastcard from "./components/Forecastcard";
 import { useEffect, useState } from "react";
 import { rainAnimation } from "./utilities/rainAnimation";
-import { snowAnimation } from "./utilities/snowAnimation";
 import "./styles/rainStyles.css";
 import "./styles/snowStyles.css";
 import Snowcanvas from "./components/Snowcanvas";

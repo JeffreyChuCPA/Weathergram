@@ -1,8 +1,6 @@
-export const snowAnimation = () => {
+export const snowAnimation = (canvas, ctx) => {
     let w = window.innerWidth,
         h = window.innerHeight,
-        canvas = document.getElementById("snow"),
-        ctx = canvas.getContext("2d"),
         arc = 500,
         time,
         size = 2,
@@ -28,44 +26,45 @@ export const snowAnimation = () => {
         }
     };
 
-    const bubble = (animationFrame) => {
-        if (animationFrame) {
-            ctx.clearRect(0, 0, w, h);
+    const bubble = () => {
+        ctx.clearRect(0, 0, w, h);
 
-            for (let i = 0; i < arc; i++) {
-                let li = lights[i];
+        for (let i = 0; i < arc; i++) {
+            let li = lights[i];
 
-                ctx.beginPath();
-                ctx.arc(li.x, li.y, li.size, 0, Math.PI * 2, false);
-                ctx.fillStyle = li.c;
-                ctx.fill();
+            ctx.beginPath();
+            ctx.arc(li.x, li.y, li.size, 0, Math.PI * 2, false);
+            ctx.fillStyle = li.c;
+            ctx.fill();
 
-                li.x = li.x + li.toX * (time * 0.05);
-                li.y = li.y + li.toY * (time * 0.05);
+            li.x = li.x + li.toX * (time * 0.05);
+            li.y = li.y + li.toY * (time * 0.05);
 
-                if (li.x > w) {
-                    li.x = 0;
-                }
-                if (li.y > h) {
-                    li.y = 0;
-                }
-                if (li.x < 0) {
-                    li.x = w;
-                }
-                if (li.y < 0) {
-                    li.y = h;
-                }
+            if (li.x > w) {
+                li.x = 0;
             }
+            if (li.y > h) {
+                li.y = 0;
+            }
+            if (li.x < 0) {
+                li.x = w;
+            }
+            if (li.y < 0) {
+                li.y = h;
+            }
+        }
 
+        //TODO how to fix this infinite animation loop that runs forever once called. Conditional is only checked once
+        if (canvas) {
             requestAnimationFrame(bubble);
             console.log("is animating");
+        }
 
-            if (time < speed) {
-                time++;
-            }
+        if (time < speed) {
+            time++;
         }
     };
 
     init();
-    bubble(true);
+    bubble();
 };
