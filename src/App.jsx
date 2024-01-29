@@ -8,6 +8,7 @@ import { rainAnimation } from "./utilities/rainAnimation";
 import { snowAnimation } from "./utilities/snowAnimation";
 import "./styles/rainStyles.css";
 import "./styles/snowStyles.css";
+import Snowcanvas from "./components/Snowcanvas";
 
 function App() {
     const [data, setData] = useState({});
@@ -20,8 +21,7 @@ function App() {
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(position => setClientCoord({clientLat: position.coords.latitude, clientLong: position.coords.longitude}))
-        console.log('ran')
-        snowAnimation(isSnowy)
+        // snowAnimation(isSnowy)
     }, [setClientCoord, isSnowy])
 
     rainAnimation(isRainy)
@@ -30,7 +30,7 @@ function App() {
 
     return (
         <>
-
+            <Snowcanvas onSnowy={isSnowy} />
             <div className="bg-[url('https://source.unsplash.com/1669x931/?landscape')] bg-cover flex flex-col h-screen justify-center w-full">
                     <div className="flex flex-col">
                             <div className="px-5 flex justify-center">
@@ -47,7 +47,6 @@ function App() {
                     </div>
                 
             </div>
-            <canvas id="snow"></canvas>
         </>
     );
 }
