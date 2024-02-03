@@ -37,7 +37,7 @@ function App() {
                             </div>
                         <div className=" px-5 flex justify-center items-center">
                             <Quotecard onData={data} />
-                            <div className="flex flex-row " >
+                            <div className="flex flex-col gap-2 items-center sm:flex-row sm:gap-0 sm:items-stretch" >
                                 <Forecastcard onForecast={forecast} className="" />
                                 <Weathercard onClientCoord={clientCoord} onData={data} className=""/>
                                 <Historycard onClientCoord={clientCoord} onHistory={history} onSetHistory={setHistory} onData={data} className="" />
