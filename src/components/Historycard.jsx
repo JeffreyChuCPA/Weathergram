@@ -66,7 +66,7 @@ const Historycard = ({ onHistory, onSetHistory, onData, onClientCoord }) => {
 
     return (
         <>
-            <div className=" bg-[#000000d0] text-white p-8 rounded-[24px] w-full max-w-sm mx-4 flex flex-col relative">
+            <div className=" bg-[#000000d0] text-white p-8 rounded-[24px] w-full  max-w-sm mx-2 flex flex-col relative">
                 <h2 className="mb-2">Weather Log</h2>
                 <div>
                     <ul className="max-h-80 overflow-y-auto mb-9">
