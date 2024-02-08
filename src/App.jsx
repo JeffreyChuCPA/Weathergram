@@ -32,12 +32,12 @@ function App() {
             <Snowcanvas onSnowy={isSnowy} />
             <div className="bg-[url('https://source.unsplash.com/1669x931/?landscape')] bg-cover flex flex-col h-screen justify-center w-full">
                     <div className="flex flex-col">
-                            <div className="mt-10 sm:mt-0 sm:px-5 flex justify-center">
+                            <div className="mt-10 sm:mt-0 sm:px-5 flex justify-center mx-4">
                                 <Searchbar onSetSnowy={setIsSnowy} onSetRainy={setIsRainy} onSetForecast={setForecast} onSetData={setData} onSetHistory={setHistory} onHistory={history} />
                             </div>
-                        <div className="flex justify-center items-center">
+                        <div className="flex justify-center items-center mt-3">
                             <Quotecard onData={data} />
-                            <div className="flex flex-col gap-2 items-center sm:flex-row sm:gap-0 sm:items-stretch" >
+                            <div className="flex flex-col gap-2 items-center sm:flex-row sm:gap-0 sm:items-stretch mx-4" >
                                 <Forecastcard onForecast={forecast} className="" />
                                 <Weathercard onClientCoord={clientCoord} onData={data} className=""/>
                                 <Historycard onClientCoord={clientCoord} onHistory={history} onSetHistory={setHistory} onData={data} className="" />
