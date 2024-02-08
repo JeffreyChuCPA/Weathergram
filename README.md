@@ -1,8 +1,15 @@
-# React + Vite
+# Weathergram
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
+This weather app project provides users with real-time weather information for major cities, including the current temperature, wind speed, humidity, and distance from the user. Additional features include:
+- Inspirational quote displayed akin to a proper weathergram
+- 5-day weather forecast
+- Search history component
+- Weather animation for snow and rain depending on the condition for the searched city
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies Used
+- HTML, CSS, JavaScript
+- React
+- Tailwind CSS
+- OpenWeather API (https://openweathermap.org/api)
+- Quotable API (https://github.com/lukePeavey/quotable)
