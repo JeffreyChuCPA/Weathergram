@@ -1,4 +1,6 @@
 export const snowAnimation = (canvas, ctx) => {
+    let animationFrame;
+
     let w = window.innerWidth,
         h = window.innerHeight,
         arc = 500,
@@ -56,8 +58,10 @@ export const snowAnimation = (canvas, ctx) => {
 
         //TODO how to fix this infinite animation loop that runs forever once called. Conditional is only checked once
         if (canvas) {
-            requestAnimationFrame(bubble);
+            animationFrame = requestAnimationFrame(bubble);
             console.log("is animating");
+        } else {
+          cancelAnimationFrame(animationFrame)
         }
 
         if (time < speed) {

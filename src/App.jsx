@@ -32,12 +32,12 @@ function App() {
             <Snowcanvas onSnowy={isSnowy} />
             <div className="bg-[url('https://source.unsplash.com/1669x931/?landscape')] bg-cover flex flex-col h-screen justify-center w-full">
                     <div className="flex flex-col">
-                            <div className="px-5 flex justify-center">
+                            <div className="px-5 flex justify-center mb-5">
                                 <Searchbar onSetSnowy={setIsSnowy} onSetRainy={setIsRainy} onSetForecast={setForecast} onSetData={setData} onSetHistory={setHistory} onHistory={history} />
                             </div>
                         <div className=" px-5 flex justify-center items-center">
                             <Quotecard onData={data} />
-                            <div className="flex flex-row " >
+                            <div className="flex flex-col sm:flex-row gap-4 sm:gap-0 items-center sm:items-stretch" >
                                 <Forecastcard onForecast={forecast} className="" />
                                 <Weathercard onClientCoord={clientCoord} onData={data} className=""/>
                                 <Historycard onClientCoord={clientCoord} onHistory={history} onSetHistory={setHistory} onData={data} className="" />
@@ -46,6 +46,21 @@ function App() {
                     </div>
                 
             </div>
+
+            {/* {data ? (
+                <div className="flex flex-row " >
+                                <Forecastcard onForecast={forecast} className="" />
+                                <Weathercard onClientCoord={clientCoord} onData={data} className=""/>
+                                <Historycard onClientCoord={clientCoord} onHistory={history} onSetHistory={setHistory} onData={data} className="" />
+                            </div>
+            ) : (
+                <div className="flex flex-col">
+                            <div className="px-5 flex justify-center">
+                                <Searchbar onSetSnowy={setIsSnowy} onSetRainy={setIsRainy} onSetForecast={setForecast} onSetData={setData} onSetHistory={setHistory} onHistory={history} />
+                            </div>
+                        <div className=" px-5 flex justify-center items-center">
+                            <Quotecard onData={data} />
+            )} */}
         </>
     );
 }

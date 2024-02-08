@@ -71,7 +71,7 @@ const Searchbar = ({ onSetData, onHistory, onSetHistory, onSetForecast, onSetRai
     };
 
     return (
-        <div className="flex items-center justify-center bg-[#000000d0] p-5 rounded-[24px] w-full max-w-sm mx-4 my-2 ">
+        <div className="flex items-center justify-center bg-[#000000d0] p-5 rounded-[24px] w-full max-w-sm ">
             <input
                 type="text"
                 value={location}

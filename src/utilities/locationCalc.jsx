@@ -1,5 +1,5 @@
 
-//*Function to calculate straight line distance from 2 coordinate points
+//*Function to calculate straight line distance from 2 coordinate points (client and location searched)
 const locationCalc = (userLat, userLong, searchedLat, searchedLong) => {
   let radius = 6371;
   let dLat = toRad(searchedLat - userLat);

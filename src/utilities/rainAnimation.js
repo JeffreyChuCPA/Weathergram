@@ -1,9 +1,13 @@
 export const rainAnimation = (isRainy) => {
-    if (isRainy) {
+    const removePrevRain = () => {
         const existingHrElements = document.querySelectorAll("hr");
         existingHrElements.forEach((hrElement) => {
             document.body.removeChild(hrElement);
         });
+    };
+
+    if (isRainy) {
+        removePrevRain();
 
         const counter = 100;
         for (let i = 0; i < counter; i++) {
@@ -14,9 +18,6 @@ export const rainAnimation = (isRainy) => {
             document.body.appendChild(hrElement);
         }
     } else {
-        const existingHrElements = document.querySelectorAll("hr");
-        existingHrElements.forEach((hrElement) => {
-            document.body.removeChild(hrElement);
-        });
+        removePrevRain();
     }
 };

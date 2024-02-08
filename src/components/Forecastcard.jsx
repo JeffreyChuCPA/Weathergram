@@ -1,7 +1,7 @@
 const Forecastcard = ({ onForecast }) => {
     //*To hide component on initial render as onForecast is {} with no data yet to display
     if (!onForecast?.city) {
-        return <div></div>;
+        return null;
     }
 
     const { list } = onForecast;
@@ -89,7 +89,7 @@ const Forecastcard = ({ onForecast }) => {
     };
 
     return (
-        <div className="bg-[#000000d0] text-white p-8 rounded-[24px] w-full max-w-sm mx-4 ">
+        <div className="bg-[#000000d0] text-white p-8 rounded-[24px] w-full max-w-sm mx-4  max-w-80">
             <h2 className="mb-2">5 Day Forecast</h2>
             <ul className="max-h-80 overflow-y-auto mb-9">
                 {ForecastTemp(list).map((item, index) => (
