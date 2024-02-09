@@ -3,7 +3,7 @@ import locationCalc from "../utilities/locationCalc";
 const Weathercard = ({ onData, onClientCoord }) => {
     //*To hide component on initial render as onData is {} with no data yet to display
     if (!onData?.name) {
-        return <div></div>;
+        return null;
     }
 
     const { name } = onData;
@@ -21,7 +21,7 @@ const Weathercard = ({ onData, onClientCoord }) => {
     });
 
     return (
-        <div className="bg-[#000000d0] text-white p-8 rounded-[24px] w-full  max-w-sm mx-2 ">
+        <div className="bg-[#000000d0] text-white p-8 rounded-[24px] w-full  max-w-sm mx-4 ">
             <div className="">
                 <h2>{`Weather in ${name}`}</h2>
                 <h1 className="m-0 mb-[0.4em]">{`${Math.round(temp)}°C`}</h1>
