@@ -18,7 +18,6 @@ function App() {
     const [isRainy, setIsRainy] = useState(false);
     const [isSnowy, setIsSnowy] = useState(false);
     const [backgroundImg, setBackgroundImg] = useState(background)
-    console.log(isSnowy)
 
 
     useEffect(() => {
