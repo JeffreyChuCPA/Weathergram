@@ -8,6 +8,7 @@ import { rainAnimation } from "./utilities/rainAnimation";
 import "./styles/rainStyles.css";
 import "./styles/snowStyles.css";
 import Snowcanvas from "./components/Snowcanvas";
+import background from './assets/background.jpg'
 
 function App() {
     const [data, setData] = useState({});
@@ -30,7 +31,7 @@ function App() {
     return (
         <>
             <Snowcanvas onSnowy={isSnowy} />
-            <div className="bg-[url('https://source.unsplash.com/1669x931/?landscape')] bg-cover flex flex-col h-screen justify-center w-full overflow-y-auto">
+            <div className="bg-cover bg-no-repeat bg-center flex flex-col h-screen justify-center w-full overflow-y-auto" style={{ backgroundImage: `url(${background})` }}>
                     <div className="flex flex-col">
                             <div className="mt-80 sm:mt-0 sm:px-5 flex justify-center mx-4 ">
                                 <Searchbar onSetSnowy={setIsSnowy} onSetRainy={setIsRainy} onSetForecast={setForecast} onSetData={setData} onSetHistory={setHistory} onHistory={history} />
