@@ -17,12 +17,30 @@ function App() {
     const [clientCoord, setClientCoord] = useState({});
     const [isRainy, setIsRainy] = useState(false);
     const [isSnowy, setIsSnowy] = useState(false);
+    const [backgroundImg, setBackgroundImg] = useState(background)
     console.log(isSnowy)
+
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(position => setClientCoord({clientLat: position.coords.latitude, clientLong: position.coords.longitude}))
         // snowAnimation(isSnowy)
     }, [setClientCoord, isSnowy])
+
+    useEffect(() => {
+        const apiKey = import.meta.env.VITE_UNSPLASHAPIKEY
+        const fetchBackgroundImg = async () => {
+            const locationSearch = data.name
+            try {
+                const response = await fetch(`https://api.unsplash.com/photos/random?client_id=${apiKey}&query=${locationSearch}&orientation=landscape&count=1`)
+                const data = await response.json()
+                const retrievedImg = data[0].urls.full
+                setBackgroundImg(retrievedImg)
+            } catch (error) {
+                console.log(error.message);
+            }
+        }
+        fetchBackgroundImg()
+    }, [data])
 
     rainAnimation(isRainy)
     
@@ -31,7 +49,7 @@ function App() {
     return (
         <>
             <Snowcanvas onSnowy={isSnowy} />
-            <div className="bg-cover bg-no-repeat bg-center flex flex-col h-screen justify-center w-full overflow-y-auto" style={{ backgroundImage: `url(${background})` }}>
+            <div className="bg-cover bg-no-repeat bg-center flex flex-col h-screen justify-center w-full overflow-y-auto" style={{ backgroundImage: `url(${backgroundImg})` }}>
                     <div className="flex flex-col">
                             <div className="mt-80 sm:mt-0 sm:px-5 flex justify-center mx-4 ">
                                 <Searchbar onSetSnowy={setIsSnowy} onSetRainy={setIsRainy} onSetForecast={setForecast} onSetData={setData} onSetHistory={setHistory} onHistory={history} />
@@ -47,21 +65,6 @@ function App() {
                     </div>
                 
             </div>
-
-            {/* {data ? (
-                <div className="flex flex-row " >
-                                <Forecastcard onForecast={forecast} className="" />
-                                <Weathercard onClientCoord={clientCoord} onData={data} className=""/>
-                                <Historycard onClientCoord={clientCoord} onHistory={history} onSetHistory={setHistory} onData={data} className="" />
-                            </div>
-            ) : (
-                <div className="flex flex-col">
-                            <div className="px-5 flex justify-center">
-                                <Searchbar onSetSnowy={setIsSnowy} onSetRainy={setIsRainy} onSetForecast={setForecast} onSetData={setData} onSetHistory={setHistory} onHistory={history} />
-                            </div>
-                        <div className=" px-5 flex justify-center items-center">
-                            <Quotecard onData={data} />
-            )} */}
         </>
     );
 }

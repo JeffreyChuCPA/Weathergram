@@ -1,17 +1,18 @@
 import urls from "../utilities/urls";
-import apiKeys from "../utilities/api-keys";
 import { useState } from "react";
 import axios, { CanceledError } from "axios";
 
 const Searchbar = ({ onSetData, onHistory, onSetHistory, onSetForecast, onSetRainy, onSetSnowy }) => {
     const [location, setLocation] = useState("");
 
+    const apiKey = import.meta.env.VITE_WEATHERAPIKEY
+
     const currentWeatherURL =
         urls.weatherURL +
         "/weather?q=" +
         location +
         "&units=metric&appid=" +
-        apiKeys.weatherAPIKey;
+        apiKey;
 
 
     //*function to retrieve current weather API data from user input
@@ -42,7 +43,7 @@ const Searchbar = ({ onSetData, onHistory, onSetHistory, onSetForecast, onSetRai
                     "&lon=" +
                     currlongitude +
                     "&units=metric&appid=" +
-                    apiKeys.weatherAPIKey;
+                    apiKey;
                 searchForecast(forecastURL)
             })
             .catch((error) => {
