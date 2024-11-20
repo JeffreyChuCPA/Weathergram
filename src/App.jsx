@@ -9,6 +9,7 @@ import "./styles/rainStyles.css";
 import "./styles/snowStyles.css";
 import Snowcanvas from "./components/Snowcanvas";
 import background from './assets/background.jpg'
+import icon from './assets/github-icon.png'
 
 function App() {
     const [data, setData] = useState({});
@@ -48,6 +49,12 @@ function App() {
     return (
         <>
             <Snowcanvas onSnowy={isSnowy} />
+            <a
+                href="https://github.com/JeffreyChuCPA/Weathergram"
+                className="fixed top-4 right-4 px-4 py-2 w-20"
+            >
+                <img src={icon} alt="github icon"/>
+            </a>
             <div className="bg-cover bg-no-repeat bg-center flex flex-col h-screen justify-center w-full overflow-y-auto" style={{ backgroundImage: `url(${backgroundImg})` }}>
                     <div className="flex flex-col">
                             <div className="mt-80 sm:mt-0 sm:px-5 flex justify-center mx-4 ">
