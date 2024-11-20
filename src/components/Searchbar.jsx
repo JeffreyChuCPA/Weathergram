@@ -74,6 +74,7 @@ const Searchbar = ({ onSetData, onHistory, onSetHistory, onSetForecast, onSetRai
     return (
         <div className="flex items-center justify-center bg-[#000000d0] p-5 rounded-[24px] w-full max-w-sm ">
             <input
+            id="searchbar"
                 type="text"
                 value={location}
                 onKeyDown={(event) => handleKeyDown(event)}
