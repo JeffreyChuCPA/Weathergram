@@ -21,9 +21,9 @@ const Quotecard = ({onData}) => {
 
     return (
         <div className="bg-[#000000d0] text-white p-8 rounded-[24px] w-full max-w-sm ">
-            { quote && <p className="font-cursive text-3xl" >{quote[0].content}</p>}
+            { quote && <p className="font-cursive text-3xl" >{quote.quote}</p>}
             {/*//*TODO Fix below code for the -undefined  */}
-            { quote && <p className="font-cursive text-2xl text-right mt-4" >{`- ${quote[0].author}`}</p>}
+            { quote && <p className="font-cursive text-2xl text-right mt-4" >{`- ${quote.author}`}</p>}
         </div>
     );
 };
